@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addContact } from 'redux/operations';
-import { nanoid } from 'nanoid';
 import { Form, Label, ButtonStyle } from './ContactForm.styled';
 import { InputStyle } from 'components/Filter/Filter.styled';
 
 const ContactForm = () => {
   const dispatch = useDispatch();
-  const contacts = useSelector(state => state.contacts);
+  const contacts = useSelector(state => state.contacts.items);
   const [formData, setFormData] = useState({
     name: '',
     number: '',
@@ -18,7 +17,10 @@ const ContactForm = () => {
   const handleSubmit = event => {
     event.preventDefault();
 
-    if (contacts.find(contact => contact.name === name)) {
+    if (
+      Array.isArray(contacts) &&
+      contacts.find(contact => contact.name === name)
+    ) {
       alert(`${name} is already in contacts.`);
       return;
     }

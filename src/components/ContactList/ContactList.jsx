@@ -12,10 +12,11 @@ const ContactList = props => {
     dispatch(fetchContacts());
   }, [dispatch]);
 
-  const filteredContacts = contacts.filter(contact =>
-    contact?.name?.toLowerCase().includes(filter?.toLowerCase() || '')
-  );
-  console.log(filteredContacts);
+  const filteredContacts = Array.isArray(contacts)
+    ? contacts.filter(contact =>
+        contact?.name?.toLowerCase().includes(filter?.toLowerCase() || '')
+      )
+    : [];
 
   return (
     <ul>

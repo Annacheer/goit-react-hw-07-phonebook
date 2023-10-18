@@ -12,7 +12,6 @@ export const onFilterChange = value => {
 
 const Filter = () => {
   const dispatch = useDispatch();
-  // const contacts = useSelector(state => state.contacts);
   const [localFilter, setLocalFilter] = useState('');
 
   const handleInputChange = event => {

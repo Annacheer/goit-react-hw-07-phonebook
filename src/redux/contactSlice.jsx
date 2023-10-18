@@ -7,7 +7,7 @@ const initialState = {
   error: null,
 };
 
-const contactsSlice = createSlice({
+export const contactsReducer = createSlice({
   name: 'contacts',
   initialState,
   reducers: {},
@@ -25,7 +25,11 @@ const contactsSlice = createSlice({
         state.isLoading = false;
       })
       .addCase(addContact.fulfilled, (state, action) => {
-        state.items.push(action.payload);
+        if (Array.isArray(state.items)) {
+          state.items.push(action.payload);
+        } else {
+          state.items = [action.payload];
+        }
       })
       .addCase(deleteContact.fulfilled, (state, action) => {
         state.items = state.items.filter(
@@ -33,6 +37,4 @@ const contactsSlice = createSlice({
         );
       });
   },
-});
-
-export default contactsSlice.reducer;
+}).reducer;
