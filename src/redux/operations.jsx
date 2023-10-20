@@ -6,7 +6,7 @@ export const fetchContacts = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const response = await axios.get(
-        'https://65303d606c756603295e72eb.mockapi.io/contacts'
+        'https://65303d606c756603295e72eb.mockapi.io/contacts/contacts'
       );
       if (response.data === 'Not found') {
         throw new Error('Failed to fetch contacts');
@@ -23,7 +23,7 @@ export const addContact = createAsyncThunk(
   async (contact, thunkAPI) => {
     try {
       const response = await axios.post(
-        'https://65303d606c756603295e72eb.mockapi.io/contacts',
+        'https://65303d606c756603295e72eb.mockapi.io/contacts/contacts',
         contact
       );
       if (response.data === 'Not found') {
@@ -41,7 +41,7 @@ export const deleteContact = createAsyncThunk(
   async (contactId, thunkAPI) => {
     try {
       const response = await axios.delete(
-        `https://65303d606c756603295e72eb.mockapi.io/contacts/${contactId}`
+        `https://65303d606c756603295e72eb.mockapi.io/contacts/contacts/${contactId}`
       );
       if (response.data === 'Not found') {
         throw new Error('Failed to delete contact');
